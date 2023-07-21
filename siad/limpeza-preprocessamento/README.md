@@ -1,5 +1,12 @@
 # Limpeza e Pré-Processamento
 
+## Objetivo
+
+Este repositório contém o código usado para limpar e pré-processar dados para o curso de Sistemas Inteligentes de Apoio à Decisão da UFG. O código é escrito em Python e usa as bibliotecas Pandas e NumPy para manipular os dados.
+
+A limpeza e o pré-processamento de dados são etapas essenciais em qualquer projeto de aprendizado de máquina. Os dados coletados do mundo real geralmente são sujos e inconsistentes, e é necessário limpá-los e pré-processá-los para que possam ser usados por modelos de aprendizado de máquina.
+
+
 ## Requisitos
 
 ```bash
@@ -9,57 +16,19 @@ pip install pandas numpy sklearn nltk
 >>> nltk.download('stopwords')
 ```
 
-## Explicação
 
-### Remoção de dados duplicados:
-A biblioteca pandas é importada como pd.
-Um DataFrame chamado 'dados' é suposto existir.
-O método drop_duplicates() é chamado no DataFrame para remover as linhas duplicadas.
-O DataFrame resultante sem duplicatas é atribuído à variável 'dados_sem_duplicatas'.
+## Funcionalidades
 
-### Tratamento de valores ausentes:
-A biblioteca pandas é importada como pd.
-Um DataFrame chamado 'dados' é suposto existir.
-O método dropna() é chamado no DataFrame para remover as linhas que contêm valores ausentes.
-O DataFrame resultante sem valores ausentes é atribuído à variável 'dados_sem_ausentes'.
-Alternativamente, o método fillna(valor) pode ser usado para preencher os valores ausentes com um valor específico.
+- Remoção de Dados Duplicados: Identificar e remover registros repetidos em um conjunto de dados, garantindo que cada observação seja única.
 
-### Tratamento de outliers:
-A biblioteca numpy é importada como np.
-Uma lista ou array chamado 'dados' é suposto existir.
-A média e o desvio padrão dos dados são calculados usando np.mean() e np.std(), respectivamente.
-Limites inferior e superior são calculados multiplicando o desvio padrão por 3 e subtraindo/adicionando à média.
-Os outliers são filtrados selecionando apenas os valores dentro dos limites estabelecidos.
-Os dados filtrados são armazenados na variável 'dados_filtrados'.
+- Tratamento de valores ausentes: Lidar com valores ausentes é crucial para evitar viés e problemas na análise. Existem várias abordagens para tratar valores ausentes, como removê-los, preencher com valores médios ou estimados, ou usar técnicas mais avançadas, como imputação de dados.
 
-### Padronização e normalização:
-A biblioteca sklearn.preprocessing é importada.
-Um array ou DataFrame chamado 'dados' é suposto existir.
-Para padronização, um objeto StandardScaler() é criado e aplicado aos dados usando fit_transform().
-Para normalização, um objeto MinMaxScaler() é criado e aplicado aos dados usando fit_transform().
-Os dados padronizados e normalizados são armazenados nas variáveis 'dados_padronizados' e 'dados_normalizados', respectivamente.
+- Tratamento de outliers: Outliers são valores que se desviam significativamente do padrão dos demais dados. Eles podem ser erros ou representar informações importantes. Dependendo do caso, é possível removê-los, substituí-los ou ajustar seu impacto nos dados.
 
-### Codificação de variáveis categóricas:
-A biblioteca pandas é importada como pd.
-Um DataFrame chamado 'dados' é suposto existir, com uma coluna categórica chamada 'categoria'.
-O método get_dummies() do pandas é usado para criar colunas separadas para cada categoria, convertendo-as em variáveis binárias (one-hot encoding).
-O DataFrame resultante com as colunas codificadas é armazenado na variável 'dados_codificados'.
+- Padronização e normalização: Essas técnicas são usadas para escalar os dados e garantir que eles estejam na mesma faixa de valores. A padronização transforma os dados para ter média zero e desvio padrão um, enquanto a normalização ajusta os dados para uma escala específica, geralmente entre 0 e 1.
 
-### Redução de dimensionalidade:
-A biblioteca sklearn.decomposition é importada.
-Um array ou DataFrame chamado 'dados' é suposto existir.
-Um objeto PCA(n_components=2) é criado, especificando o número de componentes principais desejado (2, neste caso).
-O método fit_transform() é aplicado aos dados usando o objeto PCA para realizar a redução de dimensionalidade.
-Os dados reduzidos são armazenados na variável 'dados_reduzidos'.
+- Codificação de variáveis categóricas: Dados categóricos, como cores ou categorias, geralmente precisam ser convertidos em formato numérico para serem utilizados em algoritmos de análise. Isso pode ser feito através de técnicas como codificação one-hot, onde cada categoria é representada por uma variável binária.
 
-### Normalização de texto:
-A biblioteca re (regex), nltk (Natural Language Toolkit) e a classe PorterStemmer da biblioteca nltk.stem são importadas.
-Um texto chamado 'texto' é suposto existir.
-A expressão regular [^a-zA-Z] é usada em re.sub() para remover todos os caracteres não alfabéticos (pontuação e caracteres especiais).
-O método lower() é chamado em 'texto_normalizado' para converter todo o texto em minúsculas.
-A função nltk.word_tokenize() é usada para dividir o texto normalizado em palavras individuais.
-As stopwords em português são carregadas usando stopwords.words('portuguese') e armazenadas na variável 'stopwords'.
-As palavras que não estão na lista de stopwords são filtradas usando uma compreensão de lista.
-A classe PorterStemmer é inicializada como 'stemmer' e usada para aplicar stemming (redução de palavras à raiz) às palavras sem stopwords.
-As palavras stemmizadas são armazenadas na variável 'palavras_stemmed'.
-O texto final é reconstruído usando ' '.join(palavras_stemmed) para unir as palavras processadas com um espaço entre elas.
+- Redução de dimensionalidade: Em conjuntos de dados com muitas variáveis, a redução de dimensionalidade pode ser útil para eliminar características redundantes ou irrelevantes. Técnicas como Análise de Componentes Principais (PCA) podem ser aplicadas para extrair as principais informações dos dados, reduzindo sua dimensionalidade.
+
+- Normalização de texto: Ao trabalhar com dados de texto, é comum aplicar técnicas de normalização, como remoção de pontuação, conversão para letras minúsculas, remoção de stopwords (palavras comuns sem relevância) e aplicação de stemming (redução de palavras à sua raiz).
