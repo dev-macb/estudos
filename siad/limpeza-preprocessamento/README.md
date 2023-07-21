@@ -1,11 +1,13 @@
-# siad-limpeza-preprocessamento
+# Limpeza e Pré-Processamento
 
 ## Requisitos
-'''
+
+```bash
+pip install pandas numpy sklearn nltk
 >>> import nltk
 >>> nltk.download('punkt')
 >>> nltk.download('stopwords')
-'''
+```
 
 ## Explicação
 
